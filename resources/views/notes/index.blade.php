@@ -52,6 +52,31 @@
                         <td class="px-4 py-2 border">
                             {{ $note->description }}
                         </td>
+                        <td class="px-4 py-2 border space-x-2">
+                            <!-- Edit button -->
+                            <a
+                                href="{{ route('notes.editIndex', $note->id) }}"
+                                class="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded"
+                            >
+                                Edit
+                            </a>
+
+                            <!-- Delete button -->
+                            <form
+                                action="{{ route('notes.delete', $note->id) }}"
+                                method="POST"
+                                class="inline"
+                            >
+                                @csrf @method('DELETE')
+                                <button
+                                    type="submit"
+                                    class="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded"
+                                    onclick="return confirm('Are you sure you want to delete this note?')"
+                                >
+                                    Delete
+                                </button>
+                            </form>
+                        </td>
                     </tr>
                     @empty
                     <tr>

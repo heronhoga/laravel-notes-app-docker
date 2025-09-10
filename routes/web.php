@@ -36,8 +36,14 @@ Route::middleware('guest')->group(function () {
 Route::middleware('auth')->group(function () {
     //notes
     Route::get('/notes', [NoteController::class, 'index'])->name('notes.index');
+    //create
     Route::get('/notes/create', [NoteController::class, 'createIndex'])->name('notes.createIndex');
     Route::post('/notes/create', [NoteController::class, 'createNote'])->name('notes.create');
+    //edit
+    Route::get('notes/edit/{id}', [NoteController::class, 'editIndex'])->name('notes.editIndex');
+    Route::put('/notes/edit/{id}', [NoteController::class, 'editNote'])->name('notes.edit');
+    //delete
+    Route::post('/notes/delete/{id}', [NoteController::class, 'deleteNote'])->name('notes.delete');
 
     //auth
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
