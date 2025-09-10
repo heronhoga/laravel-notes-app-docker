@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Models\Note;              
+use App\Models\Note;
+use SweetAlert2\Laravel\Swal;              
 
 class NoteController extends Controller
 {
@@ -29,4 +30,29 @@ class NoteController extends Controller
 
         return redirect()->route('login')->with('error', 'Please login first.');
     }
+
+public function createNote(Request $request)
+{
+    // Validate request
+    $newNoteData = $request->validate([
+        'title'       => 'required|string|max:255',
+        'description' => 'required|string',
+    ]);
+
+    // Add user_id to the data array
+    $newNoteData['user_id'] = Auth::id();
+
+    // Save the note
+    Note::create($newNoteData);
+    
+    Swal::fire([
+        'title' => 'New note added!',
+        'text' => 'New note successfully stored',
+        'icon' => 'success',
+        'confirmButtonText' => 'Close'
+        ]);
+
+    // Redirect back with success message
+    return redirect()->route('notes.index')->with('success', 'Note created successfully!');
+}
 }

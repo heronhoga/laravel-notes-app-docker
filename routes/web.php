@@ -34,8 +34,11 @@ Route::middleware('guest')->group(function () {
 
 // Authenticated routes (only for logged-in users)
 Route::middleware('auth')->group(function () {
+    //notes
     Route::get('/notes', [NoteController::class, 'index'])->name('notes.index');
-    Route::get('/notes/create', [NoteController::class, 'createIndex'])->name('notes.create');
+    Route::get('/notes/create', [NoteController::class, 'createIndex'])->name('notes.createIndex');
+    Route::post('/notes/create', [NoteController::class, 'createNote'])->name('notes.create');
 
+    //auth
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 });

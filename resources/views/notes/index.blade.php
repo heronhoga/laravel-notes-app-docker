@@ -15,7 +15,7 @@
                 <div class="flex gap-3">
                     <!-- Create Note Button -->
                     <a
-                        href="{{ route('notes.create') }}"
+                        href="{{ route('notes.createIndex') }}"
                         class="px-4 py-2 bg-blue-600 text-white rounded-lg shadow hover:bg-blue-700"
                     >
                         + Create Note
@@ -38,19 +38,20 @@
             <table class="w-full border-collapse">
                 <thead>
                     <tr class="bg-gray-200 text-gray-700 text-left">
-                        <th class="px-4 py-2 border">ID</th>
                         <th class="px-4 py-2 border">Title</th>
                         <th class="px-4 py-2 border">Description</th>
+                        <th class="px-4 py-2 border">Action</th>
                     </tr>
                 </thead>
                 <tbody>
                     @forelse ($notes as $note)
                     <tr class="hover:bg-gray-50">
-                        <td class="px-4 py-2 border">{{ $note->id }}</td>
                         <td class="px-4 py-2 border font-semibold">
                             {{ $note->title }}
                         </td>
-                        <td class="px-4 py-2 border">{{ $note->content }}</td>
+                        <td class="px-4 py-2 border">
+                            {{ $note->description }}
+                        </td>
                     </tr>
                     @empty
                     <tr>
