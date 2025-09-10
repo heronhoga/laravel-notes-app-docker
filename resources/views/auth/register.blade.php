@@ -10,9 +10,8 @@
     <div class="bg-white p-8 rounded-2xl shadow-lg w-full max-w-md">
         <h1 class="text-2xl font-bold text-center text-gray-800 mb-6">Register</h1>
 
-        <form method="POST" action="{{ route('register') }}" class="space-y-4">
+        <form method="POST" action="{{ route('register.process') }}" class="space-y-4">
             @csrf
-
             <div>
                 <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
                 <input type="text" name="name" id="name" required
