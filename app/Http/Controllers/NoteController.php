@@ -84,4 +84,17 @@ class NoteController extends Controller
 
         return redirect()->route('notes.editIndex', $id);
     }
+
+    public function deleteNote($id) {
+        Note::findOrFail($id)->delete();
+
+        Swal::fire([
+            'title' => 'Note deleted!',
+            'text' => 'Your note successfully deleted',
+            'icon' => 'success',
+            'confirmButtonText' => 'Close'
+        ]);
+
+        return redirect()->route('notes.index');
+    }
 }

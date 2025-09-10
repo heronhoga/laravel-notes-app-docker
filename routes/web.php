@@ -43,7 +43,7 @@ Route::middleware('auth')->group(function () {
     Route::get('notes/edit/{id}', [NoteController::class, 'editIndex'])->name('notes.editIndex');
     Route::put('/notes/edit/{id}', [NoteController::class, 'editNote'])->name('notes.edit');
     //delete
-    Route::post('/notes/delete/{id}', [NoteController::class, 'deleteNote'])->name('notes.delete');
+    Route::delete('/notes/delete/{id}', [NoteController::class, 'deleteNote'])->name('notes.delete');
 
     //auth
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
