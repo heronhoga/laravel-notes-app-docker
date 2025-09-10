@@ -29,6 +29,13 @@ class AuthController extends Controller
 
         Auth::login($user);
 
+                Swal::fire([
+        'title' => 'Register Successful',
+        'text' => 'all good',
+        'icon' => 'success',
+        'confirmButtonText' => 'Close'
+        ]);
+
         return redirect()->route('notes.index');
     }
 
@@ -46,7 +53,7 @@ class AuthController extends Controller
         'title' => 'Login Successful',
         'text' => 'all good',
         'icon' => 'success',
-        'confirmButtonText' => 'Cool'
+        'confirmButtonText' => 'Close'
         ]);
         return redirect()->route('notes.index');
     }
@@ -55,7 +62,7 @@ class AuthController extends Controller
     'title' => 'Login failed :(',
     'text' => 'Invalid email or/and password',
     'icon' => 'error',
-    'confirmButtonText' => 'Cool'
+    'confirmButtonText' => 'Close'
     ]);
 
     // Login fails
@@ -73,7 +80,7 @@ class AuthController extends Controller
         'title' => 'Logout Successful',
         'text' => 'all good',
         'icon' => 'success',
-        'confirmButtonText' => 'Cool'
+        'confirmButtonText' => 'Close'
         ]);
 
         return redirect()->route('welcome');
