@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use SweetAlert2\Laravel\Swal;
 
 class AuthController extends Controller
 {
@@ -39,9 +40,23 @@ class AuthController extends Controller
 
     // Attempt to log in
     if (Auth::attempt($credentials)) {
+
         $request->session()->regenerate();
+        Swal::fire([
+        'title' => 'Login Successful',
+        'text' => 'all good',
+        'icon' => 'success',
+        'confirmButtonText' => 'Cool'
+        ]);
         return redirect()->route('notes.index');
     }
+
+    Swal::fire([
+    'title' => 'Login failed :(',
+    'text' => 'Invalid email or/and password',
+    'icon' => 'error',
+    'confirmButtonText' => 'Cool'
+    ]);
 
     // Login fails
     return back()->withErrors([
@@ -53,6 +68,13 @@ class AuthController extends Controller
             Auth::logout();
         request()->session()->invalidate();
         request()->session()->regenerateToken();
+
+        Swal::fire([
+        'title' => 'Logout Successful',
+        'text' => 'all good',
+        'icon' => 'success',
+        'confirmButtonText' => 'Cool'
+        ]);
 
         return redirect()->route('welcome');
     }
